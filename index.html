@@ -1,17 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amanda & Tim - Wedding Website</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+            
         :root {
-            --primary-color: #d8b4a0;
-            --secondary-color: #5d4954;
+            --primary-color: #D3D3D3;
+            --secondary-color: #040720;
             --light-color: #f5f5f5;
             --dark-color: #333;
             --font-main: 'Cormorant Garamond', serif;
             --font-accent: 'Montserrat', sans-serif;
+            --font-cursive: 'Brush Script MT', cursive;
         }
         
         * {
@@ -38,10 +44,10 @@
             background-color: var(--primary-color);
             padding: 20px 0;
             position: relative;
+            font-family: var(--font-cursive);
         }
 
         
-                <!-- Add this inside the <head> section, within the <style> tags -->
         .hero {
             position: relative;
             height: 500px;
@@ -62,7 +68,7 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            z-index: -1;
+            z-index: 0;
         }
         
         .hero-photo {
@@ -70,17 +76,19 @@
             width: auto;
             margin: 0 10px;
             object-fit: cover;
+            display: block;
         }
-        
+         
         .hero-overlay {
             position: absolute;
-            top: 0;
+            justify-content:center;
+            top: 100;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-        }
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+        } 
         
         /* Media query for mobile devices */
         @media (max-width: 768px) {
@@ -97,6 +105,12 @@
         
         
         nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             background-color: var(--secondary-color);
         }
         
@@ -112,9 +126,9 @@
         }
         
         nav a {
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
-            font-family: var(--font-accent);
+            font-family: var(--font-main);
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
@@ -124,22 +138,24 @@
         }
         
         section {
-            padding: 60px 0;
+            padding: 10px 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-top: 60px;
+            margin-bottom: 20px;
             color: var(--secondary-color);
             font-size: 2.5rem;
-            font-family: var(--font-accent);
+            font-family: var(--font-main);
         }
         
         .countdown {
             background-color: var(--primary-color);
-            color: white;
-            padding: 30px 0;
+            color: var(--secondary-color);
+            padding: 0px 0;
             text-align: center;
+            font-family: var(--font-main);
         }
         
         .countdown-container {
@@ -155,8 +171,7 @@
         }
         
         .countdown-number {
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-size: 1.3rem;
         }
         
         .countdown-label {
@@ -452,14 +467,17 @@
                 left: 0 !important;
             }
         }
-        
         .password-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            /*background-color: rgba(0, 0, 0, 0.9);*/
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./photos/password_overlay_photo.JPG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -480,60 +498,75 @@
             color: var(--secondary-color);
         }
         
-        .map-container {
-            width: 100%;
-            height: 300px;
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden;
+        
+        .header-text {
+          text-align: center;
+          padding: 5px 5px;
+          background-color: var(--primary-color);
+          color: var(--secondary-color);
+          font-weight: 400;
+          font-style: normal;
         }
+        
+        .header-text h1 {
+          font-size: 5rem;
+          margin-bottom: 0px;
+          font-family: 'Parisienne', cursive;
+        }
+        
+        .header-text p {
+          font-size: 1.3rem;
+          font-family: var(--font-main);
+        }
+
     </style>
 </head>
 <body>
+
     <!-- Password Protection -->
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-container">
             <h2>Amanda & Tim's Wedding</h2>
-            <p>Please enter the password to access our wedding website:</p>
+            <p>Please enter the password found on your save the date:</p>
             <div class="form-group">
-                <input type="password" id="sitePassword" placeholder="Enter password">
+                <input type="password" id="sitePassword" placeholder="Enter password" onkeydown="if(event.key==='Enter') checkPassword()">
             </div>
             <button class="btn" onclick="checkPassword()">Enter</button>
         </div>
     </div>
 
-<header>
-     <div class="hero">
-        <div class="hero-photos">
-        <!-- Replace these placeholder URLs with the paths to your actual JPEG images -->
-        <img src="header1.jpg" alt="Couple photo 1" class="hero-photo">
-        <img src="header2.jpg" alt="Couple photo 2" class="hero-photo">
-        <img src="header3.jpg" alt="Couple photo 3" class="hero-photo">
-        </div>
-    <div class="hero-overlay"></div>
-    <h1>Amanda & Tim</h1>
-    <p>September 5, 2026</p>
-</div>
-        </div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#details">Details</a></li>
-                <li><a href="#timeline">Timeline</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#timeline">Key Events</a></li>
                 <li><a href="#accommodations">Accommodations</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#rsvp">RSVP</a></li>
                 <li><a href="#registry">Registry</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#gallery">Gallery</a></li>
             </ul>
         </nav>
-    </header>
+<div style="height: 60px;"></div>
+<header id = "home">
+     <div class="hero">
+        <div class="hero-photos">
+        <!-- Replace these placeholder URLs with the paths to your actual JPEG images -->
+            <img src="./photos/header1.JPG" alt="Couple photo 1" class="hero-photo">
+            <img src="./photos/header3.JPG" alt="Couple photo 3" class="hero-photo">
+            <img src="./photos/header2.JPG" alt="Couple photo 2" class="hero-photo">
+        </div>
+         
+        
+    </div> 
 
-    <!-- Countdown Timer (Optional Feature 1) -->
-    <div class="countdown" id="countdown">
+    <div class="header-text">
+        <h1>Amanda & Tim</h1>
+        <p>September 5, 2026 | <span class="countdown-number" id="header-days"></span> </p>
+    </div>
+
+        <!-- <!-- Countdown Timer (Optional Feature 1) -->
+    <!-- <div class="countdown" id="countdown">
         <div class="container">
-            <h2>Counting down to our special day</h2>
             <div class="countdown-container">
                 <div class="countdown-item">
                     <span class="countdown-number" id="days">00</span>
@@ -547,58 +580,31 @@
                     <span class="countdown-number" id="minutes">00</span>
                     <span class="countdown-label">Minutes</span>
                 </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
             </div>
         </div>
-    </div>
+    </div> 
+    
+    </div> -->
 
-    <!-- Event Details (Mandatory) -->
-    <section id="details">
-        <div class="container">
-            <h2 class="section-title">Wedding Details</h2>
-            <div class="details-container">
-                <div class="detail-card">
-                    <h3>Ceremony</h3>
-                    <p><strong>Date:</strong> September 5, 2026</p>
-                    <p><strong>Time:</strong> 1:30 PM</p>
-                    <p><strong>Location:</strong> Saint Paul Catholic Church<br>84 Sherwood Ave<br>Greenwich, CT 06831</p>
-                    <div class="map-container">
-                        <img src="/api/placeholder/400/300" alt="Map to ceremony location" style="width:100%; height:100%; object-fit:cover;">
-                    </div>
-                </div>
-                <div class="detail-card">
-                    <h3>Cocktail Hour, Reception, and After Party</h3>
-                    <p><strong>Time:</strong> 4:30-11:00 PM PM</p>
-                    <p><strong>Location:</strong> Westchester Country Club<br>99 Biltmore Ave<br>Rye, NY 10580</p>
-                    <p>Buses will depart from XX hotel at XX</p>
-                    <div class="map-container">
-                        <img src="/api/placeholder/400/300" alt="Map to reception location" style="width:100%; height:100%; object-fit:cover;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</header>
 
     <!-- Timeline (Optional Feature 7) -->
     <section id="timeline" style="background-color: #f9f1ee;">
         <div class="container">
-            <h2 class="section-title">Wedding Timeline</h2>
+            <h2 class="section-title">Key Events</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>RSVP Deadline</h3>
-                        <p>July 15, 2025</p>
-                        <p>Please submit your RSVP by this date.</p>
+                        <h3>RSVP</h3>
+                        <p>Please kindly <a href="#rsvp">RSVP below</a> by July 31, 2026 so we can plan accordingly. Thank you!</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Welcome Drinks</h3>
-                        <p>Friday, September 4, 2026 at TBD PM</p>
-                        <p>Location</p>
+                        <p>Friday, September 4, 2026, 8-10 pm</p>
+                        <p>Hyatt Regency Greenwich, Garden Court</p>
+                        <p>1800 E Putnam Ave, Old Greenwich, CT</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -616,8 +622,8 @@
                         <p>Saturday, September 5, 2026 at 4:30 pm</p>
                         <p>Westchester Country Club</p>
                         <p>99 Biltmore Ave, Rye, NY</p>
-                        <p>Buses depart XX Hotel at XX time</p>
-                        <p>Buses depart WCC every 30 minutes 10 pm-11:30 pm</p>
+                        <p>Shuttles depart XX Hotel at XX time</p>
+                        <p>Shuttles depart WCC every 30 minutes 10 pm-11:30 pm</p>
                     </div>
                 </div>
 
@@ -625,36 +631,8 @@
                     <div class="timeline-content">
                         <h3>Farewell Brunch</h3>
                         <p>Sunday, September 6, 2026 at 10 am</p>
-                        <p>TBD</p>
-                        <p>TBD</p>
+                        <p>Check back soon for more details!</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Photo Gallery (Mandatory) -->
-    <section id="gallery">
-        <div class="container">
-            <h2 class="section-title">Our Gallery</h2>
-            <div class="photo-gallery">
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 4">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 5">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 6">
                 </div>
             </div>
         </div>
@@ -663,57 +641,41 @@
     <!-- Guest Accommodations (Optional Feature 3) -->
     <section id="accommodations" style="background-color: #f9f1ee;">
         <div class="container">
-            <h2 class="section-title">Guest Accommodations</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">We've arranged special rates at the following hotels. Please mention "Sarah and Michael's Wedding" when booking.</p>
-            
+            <h2 class="section-title">Hotel Blocks</h2>
+
             <div class="accommodation-container">
                 <div class="accommodation-card">
-                    <h3>Grand Hotel</h3>
-                    <p><strong>Address:</strong> 789 Ocean Drive, Anytown, CA 90210</p>
-                    <p><strong>Phone:</strong> (555) 123-4567</p>
-                    <p><strong>Rate:</strong> $175/night</p>
-                    <p><strong>Distance to venue:</strong> 0.5 miles</p>
-                    <p>Complimentary breakfast and shuttle service to the venue.</p>
+                    <h3>Hyatt Regency Greenwich (Recommended!)</h3>
+                    <p><strong>Address:</strong> 1800 E Putnam Ave, Old Greenwich, CT</p>
+                    <p><strong>Booking Link:</strong> <a href="https://www.hyatt.com/en-US/group-booking/GWICH/G-ICBL">Click Here</a></p>
+                    <p>We highly recommend staying at Hyatt Regency for convenience throughout the weekend. This is where the Welcome Drinks are and where shuttles will depart for the reception.</p>
                 </div>
                 
                 <div class="accommodation-card">
-                    <h3>Seaside Inn</h3>
-                    <p><strong>Address:</strong> 101 Beach Road, Anytown, CA 90210</p>
-                    <p><strong>Phone:</strong> (555) 987-6543</p>
-                    <p><strong>Rate:</strong> $150/night</p>
-                    <p><strong>Distance to venue:</strong> 1.2 miles</p>
-                    <p>Oceanfront views, pool, and full-service spa.</p>
+                    <h3>Westchester Country Club</h3>
+                    <p><strong>Address:</strong> 99 Biltmore Ave, Rye, NY</p>
+                    <p><strong>Booking Link:</strong> Coming Soon!</p>
+                    <p>This is where the cocktail hour, reception, and after party are.</p>
+                </div>
+                
+            </div>
+
+<section id="travel" style="background-color: #f9f1ee;">
+        <div class="container">
+            <h2 class="section-title">Getting Here</h2>
+
+            <div class="accommodation-container">
+                <div class="accommodation-card">
+                    <h3>✈️ Airports</h3>
+                    <p>White Plains Airport (HPN) is the closest by far. Otherwise, Laguardia (LGA) is the closest of the NYC airports.</p>
                 </div>
                 
                 <div class="accommodation-card">
-                    <h3>Downtown Suites</h3>
-                    <p><strong>Address:</strong> 222 Main Street, Anytown, CA 90210</p>
-                    <p><strong>Phone:</strong> (555) 456-7890</p>
-                    <p><strong>Rate:</strong> $125/night</p>
-                    <p><strong>Distance to venue:</strong> 1.5 miles</p>
-                    <p>All-suite hotel with kitchenettes.</p>
+                    <h3>🚂 Trains</h3>
+                    <p>The Stamford station is less than 2 miles from the Hyatt Regency hotel block. Both Amtrak and Metro North stop at Stamford.</p>
                 </div>
+                
             </div>
-            
-            <div style="margin-top: 40px; text-align: center;">
-                <h3>Local Transportation</h3>
-                <p>We will provide a shuttle service between the recommended hotels and wedding venues.</p>
-                <p>For those arriving by air, the nearest airport is Anytown International Airport (ANT), about 15 miles from the city center.</p>
-                <p>Rental cars, taxis, and rideshare services are also available in the area.</p>
-            </div>
-            
-            <div style="margin-top: 40px; text-align: center;">
-                <h3>Things to Do in Anytown</h3>
-                <p>If you're extending your stay, here are some local attractions:</p>
-                <ul style="list-style: none; margin-top: 20px;">
-                    <li>Anytown Beach - Beautiful sandy beaches with water activities</li>
-                    <li>Anytown Historical Museum - Learn about the city's rich history</li>
-                    <li>Vineyard Tours - Several award-winning wineries within 10 miles</li>
-                    <li>Hiking Trails - Mountain views and nature preserves</li>
-                    <li>Downtown Shopping - Boutiques, galleries, and restaurants</li>
-                </ul>
-            </div>
-        </div>
     </section>
 
     <!-- FAQ Section (Optional Feature 6) -->
@@ -726,19 +688,12 @@
                         What is the dress code? <span class="toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The dress code for our wedding is semi-formal/cocktail attire. Men are encouraged to wear suits or slacks with a dress shirt and tie. Women may wear cocktail dresses or dressy separates.</p>
+                        <p>The wedding is black tie preferred.</p>
+                        <p> </p>
+                        <p>The welcome party is cocktail attire - wear something fun!</p>
+                       
                     </div>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Are children welcome at the wedding? <span class="toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>While we love your little ones, we've decided to make our wedding an adults-only celebration. We hope this allows all of our guests to relax and enjoy the evening. We appreciate your understanding!</p>
-                    </div>
-                </div>
-                
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         Will there be parking at the venues? <span class="toggle">+</span>
@@ -750,28 +705,20 @@
                 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        Can I bring a plus one? <span class="toggle">+</span>
+                        Will transportation be provided? <span class="toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Due to venue constraints, we can only accommodate those guests explicitly named on your invitation. Thank you for your understanding.</p>
+                        <p>Yes, shuttles will be provided between Hyatt Regency and Westchester Country Club. Check back closer to wedding weekend for specific departure times!</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        What if I have dietary restrictions? <span class="toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We're happy to accommodate dietary restrictions. Please note any special requirements in your RSVP response.</p>
-                    </div>
-                </div>
                 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         Will the wedding be indoor or outdoor? <span class="toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The ceremony will be held indoors at the church, while the reception will take place in the Grand Ballroom with access to an outdoor terrace. In case of inclement weather, all activities will be moved indoors.</p>
+                        <p>The ceremony will be held indoors at the church. The cocktail hour and reception will both be based indoors with access to outdoor terraces, weather permitting.</p>
                     </div>
                 </div>
             </div>
@@ -779,40 +726,25 @@
     </section>
 
     <!-- RSVP System (Mandatory) -->
-    <section id="rsvp" style="background-color: #f9f1ee;">
-        <div class="container">
-            <h2 class="section-title">RSVP</h2>
-            <div class="rsvp-form">
-                <p style="text-align: center; margin-bottom: 20px;">Please RSVP by July 15, 2025</p>
-                <form id="rsvpForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="attendance">Will you be attending?</label>
-                        <select id="attendance" required>
-                            <option value="">Please select</option>
-                            <option value="yes">Happily Accept</option>
-                            <option value="no">Regretfully Decline</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests (including yourself)</label>
-                        <input type="number" id="guests" min="1" max="4" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Any special messages for the couple?</label>
-                        <textarea id="message" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="btn">Submit RSVP</button>
-                </form>
-            </div>
+   <section id="rsvp" style="background-color: #f9f1ee;">
+      <div class="container">
+        <h2 class="section-title">RSVP</h2>
+        <div class="rsvp-form" style="padding: 0; border: none; box-shadow: none;">
+          <p style="text-align: center; margin-bottom: 20px;"></p>
+          <div style="text-align:center;">
+            <iframe 
+              src="https://withjoy.com/amanda-and-tim-sep-26/rsvp" 
+              width="100%" 
+              height="900" 
+              frameborder="0" 
+              marginheight="0" 
+              marginwidth="0"
+              style="border-radius: 10px; border: 1px solid var(--primary-color); background-color: white;">
+              Loading Joy RSVP…
+            </iframe>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Registry Information (Mandatory) -->
@@ -843,6 +775,34 @@
         </div>
     </section>
 
+        <!-- Photo Gallery (Mandatory) -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="photo-gallery">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Engagement photo 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Engagement photo 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Engagement photo 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Engagement photo 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Engagement photo 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/400" alt="Engagement photo 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <footer>
         <div class="container">
             <p>Amanda & Tim | September 5, 2026</p>
@@ -862,31 +822,32 @@
             }
         }
         
-        // Countdown Timer
-        function updateCountdown() {
-            const weddingDate = new Date('August 12, 2025 15:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = weddingDate - now;
-            
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                
-                document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-                document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
-            } else {
-                document.getElementById('countdown').innerHTML = '<h2>Our Wedding Day Is Here!</h2>';
-            }
-        }
         
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
+// Countdown Timer
+function updateCountdown() {
+    const weddingDate = new Date('September 5, 2026 13:30').getTime();
+    const now = new Date().getTime();
+    const timeLeft = weddingDate - now;
+
+    if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById('header-days').innerHTML = `${days} days to go!`;
+//        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+//        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+//        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+   } else {
+        document.getElementById('countdown').innerHTML = '<h2>Our Wedding Day Is Here!</h2>';
+    }
+}
+
+// Start the countdown and refresh every minute
+updateCountdown();
+setInterval(updateCountdown, 60000); // every 60 seconds
+
+
         // Toggle FAQ answers
         function toggleFAQ(element) {
             element.parentElement.classList.toggle('faq-active');
@@ -918,4 +879,5 @@
         });
     </script>
 </body>
+
 </html>
