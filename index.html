@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Amanda & Tim - Wedding Website</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
@@ -41,7 +41,7 @@
         
         header {
             background-color: var(--primary-color);
-            padding: 20px 0;
+            padding: 20px 0; */
             position: relative;
             font-family: var(--font-cursive);
         }
@@ -60,7 +60,6 @@
         }
         
         .hero-photos {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -462,7 +461,7 @@
         }
         
         /* Show hamburger on mobile screens */
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
             .hamburger {
                 display: flex !important;
             }
@@ -529,7 +528,7 @@
         }
 
         /* Force mobile view for testing */
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
             }
@@ -587,7 +586,7 @@
         }
         
         /* But show it on mobile when not on login page */
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
             .hamburger {
                 display: flex !important;
             }
@@ -596,6 +595,45 @@
             .password-overlay ~ .hamburger {
                 display: none !important;
             }
+
+            .header-text {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                background-color: transparent !important;
+            }
+            
+            .header-text h1 {
+                position: absolute;
+                top: 40%;
+                left: 60%;
+                transform: translate(-25%, -125%);
+                color: white;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                margin: 0;
+                font-size: 2.5rem !important;
+                
+            }
+            
+            .header-text p {
+                position: absolute;
+                bottom: 100px !important;
+                left: 50%;
+                transform: translateX(-50%);
+                color: white;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+                margin: 0;
+                text-align: center;
+                width: 100%;
+                z-index: 3 !important;
+            }
+
+            /* .hero {
+                position: relative;
+            } */
         }
         
         .password-container {
@@ -669,18 +707,6 @@
         </div>
     </div>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#timeline">Key Events</a></li>
-            <li><a href="#accommodations">Accommodations</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#rsvp">RSVP</a></li>
-            <li><a href="#registry">Registry</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-        </ul>
-    </nav>
-<div style="height: 60px;" class="mobile-spacer"></div>
 <header id = "home">
      <div class="hero">
         <div class="hero-photos">
