@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Amanda & Tim - Wedding Website</title>
+    <link rel="icon" href="./wedding-rings.png" type="image/png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
@@ -461,11 +462,11 @@
         }
         
         /* Show hamburger on mobile screens */
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             .hamburger {
                 display: flex !important;
             }
-        }
+        } */
         
         .hamburger span {
             width: 25px;
@@ -534,9 +535,9 @@
             }
             
             /* Show hamburger menu on mobile */
-            .hamburger {
+            /* .hamburger {
                 display: flex !important;
-            }
+            } */
             
             /* Hide desktop navigation menu on mobile */
             nav {
@@ -587,9 +588,7 @@
         
         /* But show it on mobile when not on login page */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
-            }
+
             
             /* Keep it hidden during password overlay */
             .password-overlay ~ .hamburger {
@@ -602,6 +601,8 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                height: 500px;
+                padding: 0;
                 z-index: 2;
                 background-color: transparent !important;
             }
@@ -620,7 +621,7 @@
             
             .header-text p {
                 position: absolute;
-                bottom: 100px !important;
+                bottom: 1px !important;
                 left: 50%;
                 transform: translateX(-50%);
                 color: white;
@@ -630,6 +631,26 @@
                 width: 100%;
                 z-index: 3 !important;
             }
+
+            .password-container {
+                padding: 5px !important;
+                margin-top: 100;
+                background-color: rgba(255, 255, 255, 0.5) !important;
+            }
+
+            .password-overlay {
+                align-items: flex-start;
+                padding-top:40px; 
+            }
+
+            .password-container h2 {
+                display: none;
+            }
+
+            .password-container p {
+                color: var(--secondary-color);
+            }
+
 
             /* .hero {
                 position: relative;
@@ -690,8 +711,8 @@
             <li><a href="#accommodations" onclick="closeMobileMenu()">Accommodations</a></li>
             <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
             <li><a href="#rsvp" onclick="closeMobileMenu()">RSVP</a></li>
-            <li><a href="#registry" onclick="closeMobileMenu()">Registry</a></li>
-            <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li>
+            <!-- <li><a href="#registry" onclick="closeMobileMenu()">Registry</a></li>
+            <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li> -->
         </ul>
     </div>
 
@@ -908,7 +929,7 @@
     </section>
 
     <!-- Registry Information (Mandatory) -->
-    <section id="registry">
+    <!-- <section id="registry">
         <div class="container">
             <h2 class="section-title">Registry</h2>
             <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we are registered at the following stores:</p>
@@ -936,7 +957,7 @@
     </section>
 
         <!-- Photo Gallery (Mandatory) -->
-    <section id="gallery">
+    <!-- <section id="gallery">
         <div class="container">
             <h2 class="section-title">Our Gallery</h2>
             <div class="photo-gallery">
@@ -960,10 +981,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
-    <footer>
+    <footer> 
         <div class="container">
             <p>Amanda & Tim | September 5, 2026</p>
             <p>&copy; 2026 Amanda & Tim's Wedding</p>
@@ -986,6 +1007,32 @@
                 alert('Incorrect password. Please try again.');
             }
         }
+
+       function adjustPasswordTextForMobile() {
+            if (window.innerWidth <= 768) {
+            const passwordText = document.querySelector('.password-container p');
+            if (passwordText) {
+                passwordText.textContent = 'Welcome to our wedding website! Please enter the password from your save the date:';
+            }
+            }
+        }
+
+        
+        // Scroll to top on page load/refresh
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+        
+        // Also handle when DOM is ready (backup method)
+        document.addEventListener('DOMContentLoaded', function() {
+            window.scrollTo(0, 0);
+        });
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', adjustPasswordTextForMobile);
+
+// Call this function when the window is resized
+window.addEventListener('resize', adjustPasswordTextForMobile); 
         
         
 // Countdown Timer
