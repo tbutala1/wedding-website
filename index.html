@@ -11,7 +11,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:url" content="YOUR_WEBSITE_URL_HERE">
+    <meta property="og:url" content="tim-and-amanda.com">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card tags (optional but recommended) -->
@@ -56,7 +56,7 @@
         }
         
         header {
-            background-color: var(--primary-color);
+            background-color: #f9f1ee;
             padding: 20px 0; */
             position: relative;
             font-family: var(--font-cursive);
@@ -624,13 +624,13 @@
             
             .header-text h1 {
                 position: absolute;
-                top: 40%;
+                top: 45%;
                 left: 60%;
                 transform: translate(-25%, -125%);
                 color: white;
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
                 margin: 0;
-                font-size: 2.5rem !important;
+                font-size: 3rem !important;
                 
             }
             
@@ -690,7 +690,7 @@
         .header-text {
           text-align: center;
           padding: 5px 5px;
-          background-color: var(--primary-color);
+          background-color: #f9f1ee;
           color: var(--secondary-color);
           font-weight: 400;
           font-style: normal;
@@ -722,7 +722,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <ul>
             <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-            <li><a href="#timeline" onclick="closeMobileMenu()">Key Events</a></li>
+            <li><a href="#timeline" onclick="closeMobileMenu()">Wedding Weekend</a></li>
             <li><a href="#accommodations" onclick="closeMobileMenu()">Accommodations</a></li>
             <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
             <li><a href="#rsvp" onclick="closeMobileMenu()">RSVP</a></li>
@@ -787,17 +787,17 @@
     <!-- Timeline (Optional Feature 7) -->
     <section id="timeline" style="background-color: #f9f1ee;">
         <div class="container">
-            <h2 class="section-title">Key Events</h2>
+            <h2 class="section-title">Wedding Weekend</h2>
             <div class="timeline">
-                <div class="timeline-item">
+                <!-- <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>RSVP</h3>
                         <p>Please kindly <a href="#rsvp">RSVP below</a> by July 31, 2026 so we can plan accordingly. Thank you!</p>
                     </div>
-                </div>
+                </div> -->
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Welcome Drinks</h3>
+                        <h3>🥂 Welcome Drinks</h3>
                         <p>Friday, September 4, 2026, 8-10 pm</p>
                         <p>Hyatt Regency Greenwich, Garden Court</p>
                         <p>1800 E Putnam Ave, Old Greenwich, CT</p>
@@ -805,7 +805,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Ceremony</h3>
+                        <h3>⛪ Ceremony</h3>
                         <p>Saturday, September 5, 2026 at 1:30 pm</p>
                         <p>Saint Paul Catholic Church</p>
                         <p>84 Sherwood Ave, Greenwich, CT</p>
@@ -814,7 +814,7 @@
     
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Cocktail Hour, Reception, and After Party</h3>
+                        <h3>🎶 Cocktail Hour, Reception, and After Party</h3>
                         <p>Saturday, September 5, 2026 at 4:30 pm</p>
                         <p>Westchester Country Club</p>
                         <p>99 Biltmore Ave, Rye, NY</p>
@@ -881,13 +881,20 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
+                        When should I RSVP by? <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We hope you can make it! Please <a href="#rsvp">RSVP below</a> by July 31, 2026 so we can plan accordingly. We can't wait to celebrate with you!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
                         What is the dress code? <span class="toggle">+</span>
                     </div>
                     <div class="faq-answer">
                         <p>The wedding is black tie preferred.</p>
                         <p> </p>
                         <p>The welcome party is cocktail attire - wear something fun!</p>
-                       
                     </div>
                 </div>
                 <div class="faq-item">
@@ -925,6 +932,7 @@
    <section id="rsvp" style="background-color: #f9f1ee;">
       <div class="container">
         <h2 class="section-title">RSVP</h2>
+        <p style="text-align: center;">We are so excited to celebrate with you! Please RSVP by July 31, 2026 so we can plan accordingly.</p>
         <div class="rsvp-form" style="padding: 0; border: none; box-shadow: none;">
           <p style="text-align: center; margin-bottom: 20px;"></p>
           <div style="text-align:center;">
