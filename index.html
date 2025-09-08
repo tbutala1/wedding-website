@@ -23,6 +23,10 @@
     <link rel="icon" href="./wedding-rings.png" type="image/png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Great+Vibes&family=Allura&family=Alex+Brush&display=swap');
+
+
 
             
         :root {
@@ -30,9 +34,13 @@
             --secondary-color: #040720;
             --light-color: #f9f1ee; /* main background color */
             --dark-color: #333;
-            --font-main: 'Cormorant Garamond', serif;
+            /* --font-main: 'Cormorant Garamond', serif;
             --font-accent: 'Montserrat', sans-serif;
             --font-cursive: 'Brush Script MT', cursive;
+ */
+            --font-main: 'Playfair Display', serif;        /* More dramatic than Cormorant */
+            --font-accent: 'Lato', sans-serif;             /* Cleaner than Montserrat */
+            --font-cursive: 'Alex Brush', cursive;        /* More luxurious than Parisienne */
         }
         
         * {
@@ -57,7 +65,7 @@
         
         header {
             background-color: #f9f1ee;
-            padding: 20px 0;
+            padding: 0;
             position: relative;
             font-family: var(--font-cursive);
         }
@@ -65,7 +73,7 @@
         
         .hero {
             position: relative;
-            height: 500px;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -76,6 +84,7 @@
         }
         
         .hero-photos {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -83,12 +92,14 @@
             display: flex;
             justify-content: center;
             z-index: 0;
+            gap: 0;
         }
         
         .hero-photo {
             height: 100%;
             width: auto;
-            margin: 0 10px;
+            margin: 0;
+            flex: 1;
             object-fit: cover;
             display: block;
         }
@@ -260,7 +271,7 @@
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
         
@@ -660,7 +671,7 @@
             
             .header-text p {
                 position: absolute;
-                top: 85%;
+                top: 95%;
                 left: 50%;
                 transform: translateX(-50%);
                 color: white;
@@ -724,13 +735,60 @@
         .header-text h1 {
           font-size: 5rem;
           margin-bottom: 0px;
-          font-family: 'Parisienne', cursive;
+          font-family: 'Alex Brush', cursive;
         }
         
         .header-text p {
           font-size: 1.3rem;
           font-family: var(--font-main);
         }
+
+@media (min-width: 769px) {
+    .header-text {
+        position: absolute;
+        top: 0; /* Adjust this to position near top of images */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2; /* Above photos */
+        background: none !important;
+        background-color: transparent !important;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: white;
+    }
+    
+    .header-text h1 {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        font-size: 7rem;
+        margin-bottom: 0px;
+        font-family: 'Alex Brush', cursive;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: none;
+        background-color: transparent;
+    }
+    
+    .header-text p {
+        font-size: 1.3rem;
+        font-family: var(--font-main);
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        background: none;
+        background-color: transparent;
+        margin: 0;
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+}
 
     </style>
 </head>
@@ -751,8 +809,8 @@
             <li><a href="#accommodations" onclick="closeMobileMenu()">Accommodations</a></li>
             <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
             <li><a href="#rsvp" onclick="closeMobileMenu()">RSVP</a></li>
-            <!-- <li><a href="#registry" onclick="closeMobileMenu()">Registry</a></li>
-            <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li> -->
+            <!-- <li><a href="#registry" onclick="closeMobileMenu()">Registry</a></li> -->
+            <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li> 
         </ul>
     </div>
 
@@ -808,10 +866,6 @@
     </div> -->
 </header>
 
-<div class="section-divider">
-    <span class="heart">♥</span>
-</div> 
-
 <section id="next-section">
     <!-- Timeline (Optional Feature 7) -->
     <section id="timeline" style="background-color: #f9f1ee;">
@@ -835,20 +889,39 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>⛪ Ceremony</h3>
-                        <p>Saturday, September 5, 2026 at 1:30 pm</p>
+                        <p>Saturday, September 5, 2026, 1:30-2:30 pm</p>
                         <p>Saint Paul Catholic Church</p>
                         <p>84 Sherwood Ave, Greenwich, CT</p>
+                        <p></p>
+                        <p><i>Please plan to arrive by 1:15 pm so that the procession can begin promptly.</i></p>
                     </div>
                 </div>
     
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>🎶 Cocktail Hour, Reception, and After Party</h3>
-                        <p>Saturday, September 5, 2026 at 4:30 pm</p>
-                        <p>Westchester Country Club</p>
+                        <h3>🍸 Cocktail Hour</h3>
+                        <p>Saturday, September 5, 2026, 4:30-6 pm</p>
+                        <p>Westchester Country Club, Grand Foyer</p>
                         <p>99 Biltmore Ave, Rye, NY</p>
-                        <p>Shuttles will run between Hyatt Regency and Westchester Country Club - schedule TBD!</p>
+                    </div>
+                </div>
 
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>🎶 Reception</h3>
+                        <p>Saturday, September 5, 2026, 6-10 pm</p>
+                        <p>Westchester Country Club, Biltmore Room</p>
+                        <p>99 Biltmore Ave, Rye, NY</p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>🕺 After Party</h3>
+                        <p>Saturday, September 5, 2026, 10-11:30 pm</p>
+                        <p>Westchester Country Club, Mahogany Room</p>
+                        <p>99 Biltmore Ave, Rye, NY</p>
                     </div>
                 </div>
 
@@ -866,23 +939,15 @@
     <!-- Guest Accommodations (Optional Feature 3) -->
     <section id="accommodations" style="background-color: #f9f1ee;">
         <div class="container">
-            <h2 class="section-title">Hotel Blocks</h2>
+            <h2 class="section-title">Hotel Block</h2>
 
             <div class="accommodation-container">
                 <div class="accommodation-card">
-                    <h3>Hyatt Regency Greenwich (Recommended!)</h3>
+                    <h3>Hyatt Regency Greenwich</h3>
                     <p><strong>Address:</strong> 1800 E Putnam Ave, Old Greenwich, CT</p>
                     <p><strong>Booking Link:</strong> <a href="https://www.hyatt.com/en-US/group-booking/GWICH/G-ICBL">Click Here</a></p>
                     <p>We highly recommend staying at Hyatt Regency for convenience throughout the weekend. This is where the Welcome Drinks are and where shuttles will depart for the reception.</p>
                 </div>
-                
-                <div class="accommodation-card">
-                    <h3>Westchester Country Club</h3>
-                    <p><strong>Address:</strong> 99 Biltmore Ave, Rye, NY</p>
-                    <p><strong>Booking Link:</strong> Coming Soon!</p>
-                    <p>This is where the cocktail hour, reception, and after party are.</p>
-                </div>
-                
             </div>
 
 <section id="travel" style="background-color: #f9f1ee;">
@@ -921,9 +986,7 @@
                         What is the dress code? <span class="toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The wedding is black tie preferred.</p>
-                        <p> </p>
-                        <p>The welcome party is cocktail attire - wear something fun!</p>
+                        <p>The wedding is black tie - floor length gowns and tuxedos are highly encouraged!</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1009,31 +1072,67 @@
     </section>
 
         <!-- Photo Gallery (Mandatory) -->
-    <!-- <section id="gallery">
+    <section id="gallery">
         <div class="container">
-            <h2 class="section-title">Our Gallery</h2>
+            <h2 class="section-title">Photo Gallery</h2>
             <div class="photo-gallery">
                 <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 1">
+                    <img src="./gallery_1.jpg" alt="Engagement photo 1">
                 </div>
                 <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 2">
+                    <img src="./ATE_422.jpg" alt="Engagement photo 2">
                 </div>
                 <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 3">
+                    <img src="./ATE_026.jpg" alt="Engagement photo 3">
                 </div>
                 <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 4">
+                    <img src="./ATE_019.jpg" alt="Engagement photo 4">
                 </div>
                 <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 5">
+                    <img src="./ATE_006.jpg" alt="Engagement photo 5">
                 </div>
                 <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Engagement photo 6">
+                    <img src="./ATE_004.jpg" alt="Engagement photo 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_044.jpg" alt="Engagement photo 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_054.jpg" alt="Engagement photo 8">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_069.jpg" alt="Engagement photo 9">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_083.jpg" alt="Engagement photo 10">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_098.jpg" alt="Engagement photo 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_351.jpg" alt="Engagement photo 12">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_268.jpg" alt="Engagement photo 13">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_209.jpg" alt="Engagement photo 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_196.jpg" alt="Engagement photo 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_372.jpg" alt="Engagement photo 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_404.jpg" alt="Engagement photo 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="./ATE_416.jpg" alt="Engagement photo 6">
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
 
     <footer> 
@@ -1048,7 +1147,7 @@
         function checkPassword() {
             // Simple demonstration - in production, this would be securely verified server-side
             const password = document.getElementById('sitePassword').value;
-            if (password === 'timanda') {  // Example password
+            if (password === 'Stevie') {  // Example password
                 document.getElementById('passwordOverlay').style.display = 'none';
                 // Show hamburger menu after login
                 const hamburger = document.querySelector('.hamburger');
