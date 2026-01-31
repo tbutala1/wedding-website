@@ -102,6 +102,23 @@
             flex: 1;
             object-fit: cover;
             display: block;
+            opacity: 0;
+        }
+
+        body.animations-active .hero-photo {
+            animation: fadeInFromLeft 1s ease-out forwards;
+        }
+
+        body.animations-active .hero-photo:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        body.animations-active .hero-photo:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        body.animations-active .hero-photo:nth-child(3) {
+            animation-delay: 0.5s;
         }
          
         .hero-overlay {
@@ -114,6 +131,18 @@
             background: rgba(0, 0, 0, 0);
             z-index: 1;
         }
+
+        @keyframes fadeInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+            
 
         .section-divider {
             display: flex;
@@ -152,14 +181,25 @@
             
             /* Show only the second photo (header3.JPG) on mobile */
             .hero-photo:nth-child(2) {
-                display: block;
+                display: block !important;
                 margin: 0;
                 width: 100%;
                 object-fit: cover;
+                opacity: 0;
             }
+
+            /* Remove animation from photos 1 and 3 on mobile */
+            body.animations-active .hero-photo:nth-child(1),
+            body.animations-active .hero-photo:nth-child(3) {
+                animation: none !important;
+            }
+            
+            body.animations-active .hero-photo:nth-child(2) {
+                animation: fadeInFromLeft 1s ease-out forwards !important;
+                animation-delay: 0.1s !important;
+            }
+            
         }
-        
-        
         
         nav {
             position: fixed;
@@ -788,6 +828,29 @@
         transform: translateX(-50%);
         width: 100%;
     }
+
+    /* Keyframe Animations */
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 }
 
     </style>
@@ -1132,15 +1195,17 @@
     <script>
         // Password Protection
         function checkPassword() {
-            // Simple demonstration - in production, this would be securely verified server-side
             const password = document.getElementById('sitePassword').value;
-            if (password === 'Stevie') {  // Example password
+            if (password === 'Stevie') {  
                 document.getElementById('passwordOverlay').style.display = 'none';
-                // Show hamburger menu after login
+                
                 const hamburger = document.querySelector('.hamburger');
                 if (hamburger) {
                     hamburger.style.display = 'flex';
                 }
+
+                document.body.classList.add('animations-active');
+                window.scrollTo(0,0);
             } else {
                 alert('Incorrect password. Please try again.');
             }
