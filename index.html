@@ -30,14 +30,18 @@
 
             
         :root {
+            /* Original color scheme 
             --primary-color: #D3D3D3;
             --secondary-color: #040720;
-            --light-color: #f9f1ee; /* main background color */
+            --light-color: #f9f1ee; 
             --dark-color: #333;
-            /* --font-main: 'Cormorant Garamond', serif;
-            --font-accent: 'Montserrat', sans-serif;
-            --font-cursive: 'Brush Script MT', cursive;
- */
+            */ 
+            --primary-color: #C5B8A8;
+            --secondary-color: #2C3E50;
+            --accent-gold: #E8DDB5;  
+            --light-color: #FAF7F5; 
+            --dark-color: #3A3A3A; 
+            --text-muted: #6B6B6B; 
             --font-main: 'Playfair Display', serif;        /* More dramatic than Cormorant */
             --font-accent: 'Lato', sans-serif;             /* Cleaner than Montserrat */
             --font-cursive: 'Alex Brush', cursive;        /* More luxurious than Parisienne */
@@ -47,6 +51,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
@@ -64,7 +72,7 @@
         }
         
         header {
-            background-color: #f9f1ee;
+            background-color: var(--light-color);
             padding: 0;
             position: relative;
             font-family: var(--font-cursive);
@@ -148,7 +156,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f9f1ee; 
+            background-color: var(--light-color); 
         }
         
         .section-divider::before,
@@ -222,7 +230,7 @@
         }
         
         nav a {
-            color: var(--primary-color);
+            color: var(--accent-gold);
             text-decoration: none;
             font-family: var(--font-main);
             font-size: 1.1rem;
@@ -232,19 +240,41 @@
         nav a:hover {
             color: var(--primary-color);
         }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: #FFFFFF;
+        }
         
         section {
             padding: 10px 0;
             background-color: var(--light-color);
+            scroll-margin-top: 60px;
         }
         
         .section-title {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 80px;
             margin-bottom: 20px;
             color: var(--secondary-color);
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-family: var(--font-main);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
         
         .countdown {
@@ -288,6 +318,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
+            border-top: 3px solid var(--accent-gold);
         }
         
         .detail-card h3 {
@@ -332,7 +363,7 @@
             bottom: 0;
             left: 50%;
             width: 2px;
-            background-color: var(--secondary-color);
+            background-color: var(--accent-gold);
             transform: translateX(-50%);
         }
         
@@ -374,6 +405,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid var(--accent-gold);
         }
         
         .accommodation-card h3 {
@@ -392,8 +424,10 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid var(--accent-gold);
         }
-        
+
+        /*
         .faq-question {
             font-weight: bold;
             margin-bottom: 10px;
@@ -402,6 +436,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        } */
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            cursor: pointer;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
         }
         
         .faq-answer {
@@ -456,7 +503,7 @@
         }
         
         .btn:hover {
-            background-color: var(--primary-color);
+            background-color: var(--accent-gold);
         }
         
         .registry-links {
@@ -766,7 +813,7 @@
         .header-text {
           text-align: center;
           padding: 5px 5px;
-          background-color: #f9f1ee;
+          background-color: var(--light-color);
           color: var(--secondary-color);
           font-weight: 400;
           font-style: normal;
@@ -853,6 +900,21 @@
 }
 }
 
+    /* Reveal on Scroll Styles */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+        visibility: hidden; /* Prevents interaction before reveal */
+    }
+    
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+        
+
     </style>
 </head>
 <body>
@@ -931,17 +993,11 @@
 
 <section id="next-section">
     <!-- Timeline (Optional Feature 7) -->
-    <section id="timeline" style="background-color: #f9f1ee;">
+    <section id="timeline">
         <div class="container">
             <h2 class="section-title">Wedding Weekend</h2>     
             <div class="timeline">
-                <!-- <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>RSVP</h3>
-                        <p>Please kindly <a href="#rsvp">RSVP below</a> by July 31, 2026 so we can plan accordingly. Thank you!</p>
-                    </div>
-                </div> -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <h3>🥂 Welcome Drinks</h3>
                         <p>Friday, September 4, 2026, 8-10 pm</p>
@@ -949,7 +1005,7 @@
                         <p>1800 E Putnam Ave, Old Greenwich, CT</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <h3>⛪ Ceremony</h3>
                         <p>Saturday, September 5, 2026, 1:30 pm</p>
@@ -960,7 +1016,7 @@
                     </div>
                 </div>
     
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <h3>🍸 Cocktail Hour</h3>
                         <p>Saturday, September 5, 2026, 4:30-6 pm</p>
@@ -969,7 +1025,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <h3>🎶 Reception</h3>
                         <p>Saturday, September 5, 2026, 6-10 pm</p>
@@ -979,7 +1035,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <h3>🕺 After Party</h3>
                         <p>Saturday, September 5, 2026, 10-11:30 pm</p>
@@ -987,25 +1043,17 @@
                         <p>99 Biltmore Ave, Rye, NY</p>
                     </div>
                 </div>
-
-                <!-- <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Farewell Brunch</h3>
-                        <p>Sunday, September 6, 2026 at 10 am</p>
-                        <p>Check back soon for more details!</p>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
 
     <!-- Guest Accommodations (Optional Feature 3) -->
-    <section id="accommodations" style="background-color: #f9f1ee;">
+    <section id="accommodations">
         <div class="container">
             <h2 class="section-title">Hotel Block</h2>
 
             <div class="accommodation-container">
-                <div class="accommodation-card">
+                <div class="accommodation-card reveal">
                     <h3>Hyatt Regency Greenwich</h3>
                     <p><strong>Address:</strong> 1800 E Putnam Ave, Old Greenwich, CT</p>
                     <p><strong>Booking Link:</strong> <a href="https://www.hyatt.com/en-US/group-booking/GWICH/G-ICBL">Click Here</a></p>
@@ -1013,17 +1061,17 @@
                 </div>
             </div>
 
-<section id="travel" style="background-color: #f9f1ee;">
+<section id="travel">
         <div class="container">
             <h2 class="section-title">Getting Here</h2>
 
-            <div class="accommodation-container">
-                <div class="accommodation-card">
+            <div class="accommodation-container reveal">
+                <div class="accommodation-card reveal">
                     <h3>✈️ Airports</h3>
                     <p>White Plains Airport (HPN) is the closest by far. Otherwise, Laguardia (LGA) is the closest of the NYC airports.</p>
                 </div>
                 
-                <div class="accommodation-card">
+                <div class="accommodation-card reveal">
                     <h3>🚂 Trains</h3>
                     <p>The Stamford station is less than 2 miles from the Hyatt Regency hotel block. Both Amtrak and Metro North stop at Stamford.</p>
                 </div>
@@ -1035,7 +1083,7 @@
     <section id="faq">
         <div class="container">
             <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-container">
+            <div class="faq-container reveal">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         When should I RSVP by? <span class="toggle">+</span>
@@ -1084,8 +1132,8 @@
     </section>
 
     <!-- RSVP System (Mandatory) -->
-   <section id="rsvp" style="background-color: #f9f1ee;">
-      <div class="container">
+   <section id="rsvp">
+      <div class="container reveal">
         <h2 class="section-title">RSVP</h2>
         <p style="text-align: center;">We are so excited to celebrate with you! Please RSVP by July 31, 2026 so we can plan accordingly.</p>
         <div class="rsvp-form" style="padding: 0; border: none; box-shadow: none;">
@@ -1108,7 +1156,7 @@
 
     <!-- Registry Information (Mandatory) -->
     <section id="registry">
-    <div class="container" style="text-align: center;">
+    <div class="container reveal" style="text-align: center;">
         <h2 class="section-title">Registry</h2>
         <p style="max-width: 800px; margin: 0 auto 30px;">
             Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we are registered through Joy:
@@ -1123,7 +1171,7 @@
 </section>
         <!-- Photo Gallery (Mandatory) -->
     <section id="gallery">
-        <div class="container">
+        <div class="container reveal">
             <h2 class="section-title">Photo Gallery</h2>
             <div class="photo-gallery">
                 <div class="gallery-item">
@@ -1315,6 +1363,24 @@ setInterval(updateCountdown, 60000); // every 60 seconds
             alert('Thank you for your RSVP! We have received your response.');
             this.reset();
         });
+
+// Reveal on Scroll Logic
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { 
+    threshold: 0.1 // Triggers when 10% of the element is visible
+});
+
+// Start observing all elements with the 'reveal' class
+document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => revealObserver.observe(el));
+});
+        
     </script>
 </body>
 
