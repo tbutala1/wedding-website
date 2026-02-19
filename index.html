@@ -242,6 +242,15 @@
             font:weight: 200;
         }
 
+        nav a::after {
+            content: '';
+            display: block;
+            height: 1px;
+            background: var(--primary-color);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
         nav a:hover::after {
             width: 100%;
         }
@@ -659,8 +668,22 @@
             transition: all 0.3s ease;
         }
         
+        .mobile-menu a::after {
+            content: '';
+            display: block;
+            height: 1px;
+            background: white;
+            width: 0;
+            transition: width 0.3s ease;
+            margin: 0 auto;
+        }
+
         .mobile-menu a:hover {
             color: white;
+        }
+
+        .mobile-menu a:hover::after {
+            width: 100%;
         }
 
         /* Force mobile view for testing */
