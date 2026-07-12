@@ -727,32 +727,7 @@
             }
         }
         
-        .password-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /*background-color: rgba(0, 0, 0, 0.9);*/
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./password_overlay_photo.JPG');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        /* But show it on mobile when not on login page */
         @media (max-width: 768px) {
-
-            
-            /* Keep it hidden during password overlay */
-            .password-overlay ~ .hamburger {
-                display: none !important;
-            }
-
             .header-text {
                 position: absolute;
                 top: 0;
@@ -791,46 +766,11 @@
                 padding: 10px 0;
             }
 
-            .password-container {
-                padding: 5px !important;
-                margin-top: 100;
-                background-color: rgba(255, 255, 255, 0.5) !important;
-            }
-
-            .password-overlay {
-                align-items: flex-start;
-                padding-top:40px; 
-            }
-
-            .password-container h2 {
-                display: none;
-            }
-
-            .password-container p {
-                color: var(--secondary-color);
-            }
-
-
             /* .hero {
                 position: relative;
             } */
         }
-        
-        .password-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .password-container h2 {
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-        
-        
+
         .header-text {
           text-align: center;
           padding: 5px 5px;
@@ -958,18 +898,6 @@
             <li><a href="#registry" onclick="closeMobileMenu()">Registry</a></li>
             <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li> 
         </ul>
-    </div>
-
-    <!-- Password Protection -->
-    <div class="password-overlay" id="passwordOverlay">
-        <div class="password-container">
-            <h2>Amanda & Tim's Wedding</h2>
-            <p>Please enter the password found on your save the date:</p>
-            <div class="form-group">
-                <input type="password" id="sitePassword" placeholder="Enter password" onkeydown="if(event.key==='Enter') checkPassword()">
-            </div>
-            <button class="btn" onclick="checkPassword()">Enter</button>
-        </div>
     </div>
 
 <header id = "home">
@@ -1151,6 +1079,7 @@
                 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
+
                         Will the wedding be indoor or outdoor? <span class="toggle">+</span>
                     </div>
                     <div class="faq-answer">
@@ -1271,34 +1200,12 @@
     </footer>
 
     <script>
-        // Password Protection
-        function checkPassword() {
-            const password = document.getElementById('sitePassword').value;
-            if (password === 'Stevie') {  
-                document.getElementById('passwordOverlay').style.display = 'none';
-                
-                const hamburger = document.querySelector('.hamburger');
-                if (hamburger) {
-                    hamburger.style.display = 'flex';
-                }
-
-                document.body.classList.add('animations-active');
-                window.scrollTo(0,0);
-            } else {
-                alert('Incorrect password. Please try again.');
-            }
+        const hamburger = document.querySelector('.hamburger');
+        if (hamburger) {
+            hamburger.style.display = 'flex';
         }
+        document.body.classList.add('animations-active');
 
-       function adjustPasswordTextForMobile() {
-            if (window.innerWidth <= 768) {
-            const passwordText = document.querySelector('.password-container p');
-            if (passwordText) {
-                passwordText.textContent = 'Welcome to our wedding website! Please enter the password from your save the date:';
-            }
-            }
-        }
-
-        
         // Scroll to top on page load/refresh
         window.addEventListener('load', function() {
             window.scrollTo(0, 0);
@@ -1309,13 +1216,6 @@
             window.scrollTo(0, 0);
         });
 
-// Call this function when the page loads
-document.addEventListener('DOMContentLoaded', adjustPasswordTextForMobile);
-
-// Call this function when the window is resized
-window.addEventListener('resize', adjustPasswordTextForMobile); 
-        
-        
 // Countdown Timer
 function updateCountdown() {
     const weddingDate = new Date('September 5, 2026 13:30').getTime();
@@ -1352,13 +1252,7 @@ setInterval(updateCountdown, 60000); // every 60 seconds
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const hamburger = document.querySelector('.hamburger');
-            
-            // Don't allow menu to open during password overlay
-            const passwordOverlay = document.getElementById('passwordOverlay');
-            if (passwordOverlay && passwordOverlay.style.display !== 'none') {
-                return;
-            }
-            
+
             mobileMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
         }
